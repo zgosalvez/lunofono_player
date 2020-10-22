@@ -1,0 +1,42 @@
+name: lunofono_player
+description: A Flutter widget to play content bundles for Lunofono, the media
+  player for kids.
+version: 0.0.1
+repository: https://github.com/lunofono/lunofono_player
+
+# To be removed when it is published
+publish_to: none
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+  flutter: ">=1.17.0 <2.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  lunofono_bundle:
+    git:
+      url: https://github.com/lunofono/lunofono_bundle.git
+      ref: v1.x.x
+
+  flutter_grid_button: ^1.1.6
+  pausable_timer: ^0.1.0
+  provider: ^4.3.2+2
+  # Lock version to 0.10.12+3 because of a regression. This should be updated
+  # back to '>=0.10.11+2 <2.0.0' after the regression is fixed:
+  # https://github.com/flutter/flutter/issues/68010
+  video_player: 0.10.12+3
+  wakelock: ^0.1.4+1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  mockito: ^4.1.1
+  pedantic: ^1.9.0
+  test: ^1.15.2
+  video_player_platform_interface: ^2.0.0
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec

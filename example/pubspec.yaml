@@ -1,0 +1,28 @@
+name: lunofono_player_example
+description: Demonstrate how to use the lunofono_player package
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+  flutter: ">=1.17.0 <2.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  lunofono_player:
+    path: ../
+
+  lunofono_bundle:
+    git:
+      url: https://github.com/lunofono/lunofono_bundle.git
+      ref: v1.x.x
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/Farm-SoundBible.com-1720780826.opus
+    - assets/heilshorn-cows.jpg
