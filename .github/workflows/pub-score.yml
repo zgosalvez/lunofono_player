@@ -22,7 +22,7 @@ jobs:
 
       - name: Check score
         env:
-          expected_score: 100
+          expected_score: 90
           cur_points: ${{ steps.score.outputs.total }}
           max_points: ${{ steps.score.outputs.total_max }}
         run: |
