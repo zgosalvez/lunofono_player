@@ -10,10 +10,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
+      - name: Add credentials to get private repositories
+        run: git config --global credential.helper
+          '!f() { test "$1" = get && printf "username=${{ secrets.GH_DEPS_TOKEN }}\npassword=\n"; }; f'
+
       - uses: axel-op/dart-package-analyzer@v3
         id: score
         with:
           githubToken: ${{ github.token }}
+
       - name: Check score
         env:
           expected_score: 100
