@@ -211,7 +211,7 @@ packages:
       name: js
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.6.3-nullsafety.1"
+    version: "0.6.3-nullsafety.2"
   logging:
     dependency: transitive
     description:
@@ -224,7 +224,7 @@ packages:
     description:
       path: "."
       ref: "v1.x.x"
-      resolved-ref: "405e576fc3f5b42c85ab8483f6bf1c94c7b56628"
+      resolved-ref: b66a6b2f01c8b6e67917d142d8892572c4fcbc10
       url: "https://github.com/lunofono/lunofono_bundle.git"
     source: git
     version: "1.0.0"
@@ -304,21 +304,21 @@ packages:
       name: pausable_timer
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.0+1"
+    version: "0.1.0+2"
   pedantic:
     dependency: "direct dev"
     description:
       name: pedantic
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.10.0-nullsafety.1"
+    version: "1.10.0-nullsafety.2"
   pool:
     dependency: transitive
     description:
       name: pool
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.5.0-nullsafety.1"
+    version: "1.5.0-nullsafety.2"
   provider:
     dependency: "direct main"
     description:
@@ -386,14 +386,14 @@ packages:
       name: source_map_stack_trace
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.0-nullsafety.2"
+    version: "2.1.0-nullsafety.3"
   source_maps:
     dependency: transitive
     description:
       name: source_maps
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.10.10-nullsafety.1"
+    version: "0.10.10-nullsafety.2"
   source_span:
     dependency: transitive
     description:
