@@ -5,8 +5,7 @@ import 'package:flutter/material.dart' hide Image;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart' show Fake;
 
-import 'package:lunofono_bundle/lunofono_bundle.dart'
-    show Audio, Image, Video, Playable, Color;
+import 'package:lunofono_bundle/lunofono_bundle.dart';
 import 'package:lunofono_player/src/media_player.dart' show MediaPlayer;
 import 'package:lunofono_player/src/playable_player.dart';
 
@@ -86,6 +85,21 @@ void main() {
       testWidgets('Video', (WidgetTester tester) async {
         final video = PlayablePlayer.wrap(Video(Uri.parse('video')));
         await testPlayable(tester, HomeWidgetPlayable(video, key: homeKey));
+      });
+
+      testWidgets('MultiMedium', (WidgetTester tester) async {
+        final multimedium = PlayablePlayer.wrap(
+          MultiMedium(
+            AudibleMultiMediumTrack(
+              <Audible>[Video(Uri.parse('video'))],
+            ),
+            backgroundTrack: VisualizableBackgroundMultiMediumTrack(
+              <Visualizable>[Image(Uri.parse('image'))],
+            ),
+          ),
+        );
+        await testPlayable(
+            tester, HomeWidgetPlayable(multimedium, key: homeKey));
       });
     });
   });
