@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
 
 final bundle = Bundle(
   GridMenu(
-    rows: 1,
+    rows: 2,
     columns: 1,
     buttons: [
       ColoredButton(
@@ -55,6 +55,23 @@ final bundle = Bundle(
           ),
         ),
         Colors.amber,
+      ),
+      ColoredButton(
+        PlayContentAction(
+          MultiMedium(
+            VisualizableMultiMediumTrack(
+              <Visualizable>[
+                Image(Uri.parse('assets/heilshorn-cows.jpg')),
+              ],
+            ),
+            backgroundTrack: AudibleBackgroundMultiMediumTrack(
+              <Audible>[
+                Audio(Uri.parse('assets/Farm-SoundBible.com-1720780826.opus')),
+              ],
+            ),
+          ),
+        ),
+        Colors.red,
       ),
     ],
   ),

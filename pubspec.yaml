@@ -23,11 +23,8 @@ dependencies:
   flutter_grid_button: ^1.1.6
   pausable_timer: ^0.1.0
   provider: ^4.3.2+2
-  # Lock version to 0.10.12+3 because of a regression. This should be updated
-  # back to '>=0.10.11+2 <2.0.0' after the regression is fixed:
-  # https://github.com/flutter/flutter/issues/68010
-  video_player: 0.10.12+3
-  wakelock: ^0.1.4+1
+  video_player: ^1.0.0
+  wakelock: ^0.2.1
 
 dev_dependencies:
   flutter_test:

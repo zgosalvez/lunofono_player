@@ -7,10 +7,8 @@ on:
 
 jobs:
   pub-score:
-    # Disabled for now, until we can get dependencies from private repos. See:
-    # https://github.com/axel-op/dart-package-analyzer/issues/10
-    if: ${{ false }}
     runs-on: ubuntu-latest
+    container: axelop/dart_package_analyzer:v3
     steps:
       - uses: actions/checkout@v2
 
@@ -18,10 +16,11 @@ jobs:
         run: git config --global credential.helper
           '!f() { test "$1" = get && printf "username=${{ secrets.GH_DEPS_TOKEN }}\npassword=\n"; }; f'
 
-      - uses: axel-op/dart-package-analyzer@v3
+      - name: Dart Package Analyzer
         id: score
-        with:
-          githubToken: ${{ github.token }}
+        env:
+          INPUT_GITHUBTOKEN: ${{ github.token }}
+        run: /dart_package_analyzer
 
       - name: Check score
         env:

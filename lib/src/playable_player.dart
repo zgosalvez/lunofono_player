@@ -13,11 +13,11 @@ import 'media_player.dart' show MediaPlayer;
 /// function, which is used by [PlayablePlayerRegistry.builtin()].
 void _registerBuiltin(PlayablePlayerRegistry registry) {
   // New actions should be registered here
-  MultiMediumPlayer SingleMediumPlayer(Playable playable) =>
+  MultiMediumPlayer singleMediumPlayer(Playable playable) =>
       MultiMediumPlayer(MultiMedium.fromSingleMedium(playable as SingleMedium));
-  registry.register(Audio, (playable) => SingleMediumPlayer(playable));
-  registry.register(Image, (playable) => SingleMediumPlayer(playable));
-  registry.register(Video, (playable) => SingleMediumPlayer(playable));
+  registry.register(Audio, (playable) => singleMediumPlayer(playable));
+  registry.register(Image, (playable) => singleMediumPlayer(playable));
+  registry.register(Video, (playable) => singleMediumPlayer(playable));
   registry.register(
       MultiMedium, (playable) => MultiMediumPlayer(playable as MultiMedium));
 }
