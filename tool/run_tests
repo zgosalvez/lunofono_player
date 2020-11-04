@@ -1,0 +1,13 @@
+#!/bin/sh
+set -e
+
+if test "$1" != "--integration-only"; then
+  flutter format -n --set-exit-if-changed lib test
+  flutter analyze
+  flutter test
+fi
+if test "$1" = "--all" -o "$1" = "--integration-only"; then
+  cd example
+  flutter drive --driver=test_driver/integration_test.dart \
+    --target=test_integration/main_test.dart
+fi
