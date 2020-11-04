@@ -39,7 +39,7 @@ class MultiMediumPlayer extends StatelessWidget {
   /// Builds the UI for this widget.
   @override
   Widget build(BuildContext context) => Consumer<MultiMediumController>(
-        builder: (context, controller, child_) {
+        builder: (context, controller, child) {
           final mainTrack = controller.mainTrackController;
           final backgroundTrack = controller.backgroundTrackController;
 
@@ -119,7 +119,7 @@ class MultiMediumTrackPlayer extends StatelessWidget {
       // this behaviour. See:
       // https://gitlab.com/lunofono/lunofono-app/-/issues/37
       Consumer<MultiMediumTrackController>(
-        builder: (context, controller, child_) {
+        builder: (context, controller, child) {
           final current = controller.current ?? controller.last;
 
           if (current.isErroneous) {
