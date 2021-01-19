@@ -15,6 +15,7 @@ jobs:
       fail-fast: false
       matrix:
         flutter_channel: [ "stable", "beta" ]
+        test_type: [ static, unit ]
 
     runs-on: ubuntu-latest
 
@@ -39,7 +40,7 @@ jobs:
     # Analyze step needs different config for pull_request and push, so it is
     # duplicated with if conditions to use the correct configuration for each
     - name: Analyze (push)
-      if: ${{ github.event_name == 'push' }}
+      if: github.event_name == 'push' && matrix.test_type == 'static'
       uses: kitek/dartanalyzer-annotations-action@v1
       env:
         GITHUB_TOKEN: ${{ github.token }}
@@ -47,7 +48,7 @@ jobs:
         check_name: test
         commit_sha: ${{ github.sha }}
     - name: Analyze (pull_request)
-      if: ${{ github.event_name == 'pull_request' }}
+      if: github.event_name == 'pull_request' && matrix.test_type == 'static'
       uses: kitek/dartanalyzer-annotations-action@v1
       env:
         GITHUB_TOKEN: ${{ github.token }}
@@ -59,9 +60,11 @@ jobs:
       run: flutter format -n --set-exit-if-changed lib test example
 
     - name: Run unit tests
+      if: matrix.test_type != 'static'
       run: flutter test --coverage
 
     - name: Upload unit tests coverage to Codecov
+      if: matrix.test_type != 'static'
       uses: codecov/codecov-action@v1
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
