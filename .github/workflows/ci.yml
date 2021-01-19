@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [ v0.0.x ]
 
+env:
+  JAVA_VERSION: 12.x
+
 jobs:
   test:
     strategy:
@@ -20,7 +23,7 @@ jobs:
 
     - uses: actions/setup-java@v1
       with:
-        java-version: '12.x'
+        java-version: ${{ env.JAVA_VERSION }}
 
     - uses: subosito/flutter-action@v1
       with:
