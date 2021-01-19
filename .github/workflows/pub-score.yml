@@ -1,9 +1,9 @@
 name: Pub Score
 on:
   push:
-    branches: [ v0.0.x ]
+    branches: [ main, 'v[0-9]+.[0-9x]+.[0-9x]+*' ]
   pull_request:
-    branches: [ v0.0.x ]
+    branches: [ main, 'v[0-9]+.[0-9x]+.[0-9x]+*' ]
 
 jobs:
   pub-score:
