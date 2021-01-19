@@ -1,9 +1,9 @@
 name: Pub Score
 on:
   push:
-    branches: [ v0.0.x ]
+    branches: [ main, 'v[0-9]+.[0-9x]+.[0-9x]+*' ]
   pull_request:
-    branches: [ v0.0.x ]
+    branches: [ main, 'v[0-9]+.[0-9x]+.[0-9x]+*' ]
 
 jobs:
   pub-score:
@@ -11,10 +11,6 @@ jobs:
     container: axelop/dart_package_analyzer:v3
     steps:
       - uses: actions/checkout@v2
-
-      - name: Add credentials to get private repositories
-        run: git config --global credential.helper
-          '!f() { test "$1" = get && printf "username=${{ secrets.GH_DEPS_TOKEN }}\npassword=\n"; }; f'
 
       - name: Dart Package Analyzer
         id: score
