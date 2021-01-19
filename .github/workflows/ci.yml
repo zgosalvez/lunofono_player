@@ -30,10 +30,6 @@ jobs:
       with:
         channel: ${{ env.FLUTTER_CHANNEL }}
 
-    - name: Add credentials to get private repositories
-      run: git config --global credential.helper
-        '!f() { test "$1" = get && printf "username=${{ secrets.GH_DEPS_TOKEN }}\npassword=\n"; }; f'
-
     - name: Install dependencies
       run: flutter pub get
 
