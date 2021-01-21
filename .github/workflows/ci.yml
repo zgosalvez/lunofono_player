@@ -35,7 +35,7 @@ jobs:
 
     - name: Analyze
       if: matrix.test_type == 'static'
-      uses: zgosalvez/github-actions-analyze-flutter@v1
+      uses: zgosalvez/github-actions-analyze-flutter@v1.4.0
       with:
         fail-on-warnings: true
 
