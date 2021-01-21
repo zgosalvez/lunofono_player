@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [ 'new-analyze' ]
+    branches: [ 'main, 'v[0-9]+.[0-9x]+.[0-9x]+*'' ]
   pull_request:
     branches: [ main, 'v[0-9]+.[0-9x]+.[0-9x]+*' ]
 
@@ -27,37 +27,52 @@ jobs:
         java-version: ${{ env.JAVA_VERSION }}
 
     - uses: subosito/flutter-action@v1
-      # with:
-      #   channel: ${{ env.FLUTTER_CHANNEL }}
+      with:
+        channel: ${{ env.FLUTTER_CHANNEL }}
 
     - name: Install dependencies
       run: flutter pub get
 
     - name: Analyze
       if: matrix.test_type == 'static'
-      uses: zgosalvez/github-actions-analyze-flutter@v1.4.0
+      uses: zgosalvez/github-actions-analyze-flutter@v1
       with:
+        working-directory: lib
+        fail-on-warnings: true
+
+    - name: Analyze
+      if: matrix.test_type == 'static'
+      uses: zgosalvez/github-actions-analyze-flutter@v1
+      with:
+        working-directory: test
+        fail-on-warnings: true
+
+    - name: Analyze
+      if: matrix.test_type == 'static'
+      uses: zgosalvez/github-actions-analyze-flutter@v1
+      with:
+        working-directory: example
         fail-on-warnings: true
 
     - name: Run ${{ matrix.test_type }} tests
       if: matrix.test_type != 'static'
       run: tool/ci test-${{ matrix.test_type }}
 
-    # - name: Upload ${{ matrix.test_type }} tests coverage to Codecov
-    #   if: matrix.test_type != 'static'
-    #   uses: codecov/codecov-action@v1
-    #   with:
-    #     token: ${{ secrets.CODECOV_TOKEN }}
-    #     # We can't use coverage/*.lcov.info because is not supported. See:
-    #     # https://github.com/codecov/codecov-bash/pull/400
-    #     files: '*.lcov.info'
-    #     flags: type-${{ matrix.test_type }},flutter-${{ env.FLUTTER_CHANNEL }}
+#     - name: Upload ${{ matrix.test_type }} tests coverage to Codecov
+#       if: matrix.test_type != 'static'
+#       uses: codecov/codecov-action@v1
+#       with:
+#         token: ${{ secrets.CODECOV_TOKEN }}
+#         # We can't use coverage/*.lcov.info because is not supported. See:
+#         # https://github.com/codecov/codecov-bash/pull/400
+#         files: '*.lcov.info'
+#         flags: type-${{ matrix.test_type }},flutter-${{ env.FLUTTER_CHANNEL }}
 
-    - name: Save coverage reports as artifacts
-      if: matrix.test_type != 'static'
-      uses: actions/upload-artifact@v2
-      with:
-        name: coverage-${{ matrix.test_type }}-flutter_${{ env.FLUTTER_CHANNEL }}
-        path: coverage/*.lcov.info
+#     - name: Save coverage reports as artifacts
+#       if: matrix.test_type != 'static'
+#       uses: actions/upload-artifact@v2
+#       with:
+#         name: coverage-${{ matrix.test_type }}-flutter_${{ env.FLUTTER_CHANNEL }}
+#         path: coverage/*.lcov.info
 
-# vim: set et sw=2 sts=2 :
+# # vim: set et sw=2 sts=2 :
