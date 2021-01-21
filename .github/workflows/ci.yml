@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [ 'main, 'v[0-9]+.[0-9x]+.[0-9x]+*'' ]
+    branches: [ 'new-analyze' ]
   pull_request:
     branches: [ main, 'v[0-9]+.[0-9x]+.[0-9x]+*' ]
 
