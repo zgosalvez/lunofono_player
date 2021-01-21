@@ -27,8 +27,8 @@ jobs:
         java-version: ${{ env.JAVA_VERSION }}
 
     - uses: subosito/flutter-action@v1
-      with:
-        channel: ${{ env.FLUTTER_CHANNEL }}
+      # with:
+      #   channel: ${{ env.FLUTTER_CHANNEL }}
 
     - name: Install dependencies
       run: flutter pub get
@@ -43,15 +43,15 @@ jobs:
       if: matrix.test_type != 'static'
       run: tool/ci test-${{ matrix.test_type }}
 
-    - name: Upload ${{ matrix.test_type }} tests coverage to Codecov
-      if: matrix.test_type != 'static'
-      uses: codecov/codecov-action@v1
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
-        # We can't use coverage/*.lcov.info because is not supported. See:
-        # https://github.com/codecov/codecov-bash/pull/400
-        files: '*.lcov.info'
-        flags: type-${{ matrix.test_type }},flutter-${{ env.FLUTTER_CHANNEL }}
+    # - name: Upload ${{ matrix.test_type }} tests coverage to Codecov
+    #   if: matrix.test_type != 'static'
+    #   uses: codecov/codecov-action@v1
+    #   with:
+    #     token: ${{ secrets.CODECOV_TOKEN }}
+    #     # We can't use coverage/*.lcov.info because is not supported. See:
+    #     # https://github.com/codecov/codecov-bash/pull/400
+    #     files: '*.lcov.info'
+    #     flags: type-${{ matrix.test_type }},flutter-${{ env.FLUTTER_CHANNEL }}
 
     - name: Save coverage reports as artifacts
       if: matrix.test_type != 'static'
